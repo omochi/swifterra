@@ -3,7 +3,7 @@ import Swifterra
 
 final class swifterraTests: XCTestCase {
     func testRender() throws {
-        let tf = TFFile("main.tf") {
+        let tf = TFFile {
             Resource("aws_foo", "this") {
                 A("int", 12)
                 A("double", 3.14)
