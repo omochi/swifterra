@@ -10,6 +10,7 @@ final class swifterraTests: XCTestCase {
                 A("double", 3.14)
                 A("string", "hello")
                 A("symbol", Symbol("aws_foo.this.id"))
+                A("interp", StringValue("aaa\(Symbol("local.x"))bbb"))
                 A("array", ArrayValue {
                     1
                     "str"
@@ -41,6 +42,7 @@ final class swifterraTests: XCTestCase {
           double = 3.14
           string = "hello"
           symbol = aws_foo.this.id
+          interp = "aaa${local.x}bbb"
           array = [
             1,
             "str",

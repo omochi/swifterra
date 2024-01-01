@@ -49,6 +49,8 @@ private final class Impl {
             render(string: e)
         case let e as Symbol:
             render(symbol: e)
+        case let e as StringValue:
+            try render(stringValue: e)
         case let e as ArrayValue:
             try render(array: e)
         case let e as ObjectValue:
@@ -146,6 +148,23 @@ private final class Impl {
 
     func render(symbol: Symbol) {
         p.write(symbol.rawValue)
+    }
+
+    func render(stringValue: StringValue) throws {
+        let q = "\""
+        p.write(q)
+        for item in stringValue.items {
+            switch item {
+            case .string(let x):
+                p.write(x)
+            case .expr(let x):
+                p.write("${")
+                // FIXME: escaping
+                try render(expr: x)
+                p.write("}")
+            }
+        }
+        p.write(q)
     }
 
     func render(array: ArrayValue) throws {
