@@ -5,6 +5,7 @@ final class swifterraTests: XCTestCase {
     func testRender() throws {
         let tf = TFFile {
             Resource("aws_foo", "this") {
+                A("bool", true)
                 A("int", 12)
                 A("double", 3.14)
                 A("string", "hello")
@@ -35,6 +36,7 @@ final class swifterraTests: XCTestCase {
 
         XCTAssertEqual(try tf.render(), """
         resource "aws_foo" "this" {
+          bool = true
           int = 12
           double = 3.14
           string = "hello"

@@ -39,6 +39,8 @@ private final class Impl {
 
     func render(expr: any Expr) throws {
         switch expr {
+        case let e as Bool:
+            render(bool: e)
         case let e as Int:
             render(int: e)
         case let e as Double:
@@ -119,6 +121,10 @@ private final class Impl {
             }
         }
         p.write("}")
+    }
+
+    func render(bool: Bool) {
+        p.write(bool.description)
     }
 
     func render(int: Int) {
